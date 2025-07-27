@@ -14,7 +14,7 @@ services:
       - ./sql:/docker-entrypoint-initdb.d
       - sqlvolume:/var/lib/mysql
   frontend: 
-    image: haohan11/ff-nextjs
+    image: haohan11/ff-nextjs:3.0.1
     container_name: frontend_container
     environment:
       - NEXT_PUBLIC_BACKEND_PORT=http://backend:3001
@@ -22,7 +22,7 @@ services:
     ports:
       - '80:3000'
   backend: 
-    image: haohan11/ff-nodejs
+    image: haohan11/ff-nodejs:2.0.0
     container_name: backend_container
     ports:
       - '3001:3001'
