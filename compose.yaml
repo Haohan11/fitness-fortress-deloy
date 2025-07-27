@@ -1,0 +1,37 @@
+version: '0'
+services:
+  db:
+    image: mysql:5.7.24
+    container_name: mysql_container
+    restart: always
+    secrets:
+      - root_user
+      - root_password
+    environment:
+      MYSQL_ROOT_USER_FILE: /run/secrets/root_user
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/root_password
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - sqlvolume:/var/lib/mysql
+  frontend: 
+    image: haohan11/ff-nextjs
+    container_name: frontend_container
+    environment:
+      - NEXT_PUBLIC_BACKEND_PORT=http://backend:3001
+      - NEXT_PUBLIC_BACKEND_PORT_LOCAL=http://${EXTERNAL_IP}:3001
+    ports:
+      - '80:3000'
+  backend: 
+    image: haohan11/ff-nodejs
+    container_name: backend_container
+    ports:
+      - '3001:3001'
+
+secrets:
+  root_user:
+    file: ./env/secret_root_user.txt
+  root_password:
+    file: ./env/secret_root_password.txt
+
+volumes:
+  sqlvolume:
