@@ -15,8 +15,7 @@ fi
 # 顯示取得的 IP
 echo "🛰️  Detected external IP: $EXTERNAL_IP"
 
-# 自動選擇 docker-compose 執行方式
-# echo "🔁 Rebuilding and restarting containers..."
-# EXTERNAL_IP=$EXTERNAL_IP docker-compose up -d --force-recreate
+echo "🔁 Rebuilding and restarting containers..."
+EXTERNAL_IP=$EXTERNAL_IP docker-compose up -d --force-recreate
 
 # echo "✅ Deploy completed!"

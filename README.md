@@ -1,0 +1,1 @@
+Deployment resources for fitness-fortress with using docker-compose.
