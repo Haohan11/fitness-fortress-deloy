@@ -14,6 +14,6 @@ fi
 
 echo "🛰️  Detected external IP: $EXTERNAL_IP"
 
-docker-compose down
+docker compose down
 
-EXTERNAL_IP=$EXTERNAL_IP docker-compose up -d
+EXTERNAL_IP=$EXTERNAL_IP docker compose up -d
