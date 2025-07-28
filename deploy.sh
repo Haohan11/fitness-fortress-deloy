@@ -12,10 +12,8 @@ if [ -z "$EXTERNAL_IP" ]; then
   exit 1
 fi
 
-# 顯示取得的 IP
 echo "🛰️  Detected external IP: $EXTERNAL_IP"
 
-echo "🔁 Rebuilding and restarting containers..."
-EXTERNAL_IP=$EXTERNAL_IP docker-compose up -d --force-recreate
+docker-compose down
 
-# echo "✅ Deploy completed!"
+EXTERNAL_IP=$EXTERNAL_IP docker-compose up -d
